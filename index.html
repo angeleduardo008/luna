@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momentos con Luna</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <audio id="bgMusic" src="audio/sonido.mp3" loop preload="auto"></audio>
+
+  <header class="site-header" aria-label="Encabezado principal">
+    <a class="brand" href="#inicio">Momentos con Luna</a>
+    <nav class="nav-actions" aria-label="Acciones">
+      <button class="icon-button" id="musicToggle" type="button" aria-label="Reproducir música">
+        <span class="music-icon" aria-hidden="true">♪</span>
+      </button>
+      <input id="volumeControl" class="volume-control" type="range" min="0" max="1" step="0.05" value="0.55" aria-label="Volumen" />
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-media" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Una página para recordar lo bonito</p>
+        <h1>Momentos con Luna</h1>
+        <p class="hero-copy">
+          Hay recuerdos que no caben en una sola foto. Esta página guarda pedacitos de cariño,
+          memoria y todo lo que todavía quiero decirte.
+        </p>
+        <div class="hero-actions">
+          <button class="primary-button" id="startButton" type="button">Ver recuerdos</button>
+          <a class="secondary-link" href="#disculpas">Leer el mensaje final</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-section reveal">
+      <div class="intro-copy">
+        <p class="section-kicker">Para Luna</p>
+        <h2>Un recorrido por lo que significas.</h2>
+      </div>
+      <p class="intro-text">
+        Cada foto tiene un mensaje distinto, porque cada momento contigo dejó una sensación propia.
+        Cambia las imágenes por las tuyas y ajusta las frases hasta que suenen exactamente como tu corazón.
+      </p>
+    </section>
+
+    <section class="gallery-section" id="recuerdos">
+      <div class="section-heading reveal">
+        <p class="section-kicker">Galería</p>
+        <h2>20 recuerdos para guardar</h2>
+        <p id="savedCounter">0 recuerdos marcados</p>
+      </div>
+      <div class="memory-grid" id="memoryGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="letter-section reveal" id="disculpas">
+      <div class="letter-content">
+        <p class="section-kicker">Mensaje final</p>
+        <h2>Lo que quería decirte</h2>
+        <p class="letter-preview">
+          A veces una disculpa necesita calma, sinceridad y un lugar bonito donde quedarse.
+        </p>
+        <button class="primary-button" id="openLetterButton" type="button">Abrir mensaje</button>
+      </div>
+
+      <article class="apology-letter" id="apologyLetter" aria-hidden="true">
+        <h3>Luna, perdón.</h3>
+        <p>
+          Perdón por las veces en las que no supe hablarte con la paciencia que merecías,
+          por los silencios que pudieron y por cualquier momento en el que te hice sentir lejos.
+        </p>
+        <p>
+          No quiero que esta página sea solo fotos bonitas. Quiero que también sea una forma sincera
+          de decirte que reconozco mis errores, que me importas y que valoro lo que vivimos.
+        </p>
+        <p>
+          Ojalá puedas mirar estos recuerdos y sentir que, detrás de cada imagen, hay una disculpa honesta,
+          cariño real y ganas de hacer las cosas mejor.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <div class="modal" id="photoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel">
+      <button class="modal-close" type="button" aria-label="Cerrar recuerdo" data-close-modal>×</button>
+      <button class="modal-nav modal-prev" id="prevMemory" type="button" aria-label="Recuerdo anterior">‹</button>
+      <figure class="modal-figure">
+        <div class="modal-image-wrap" id="modalImageWrap">
+          <img id="modalImage" src="" alt="" />
+          <span id="modalPlaceholder"></span>
+        </div>
+        <figcaption>
+          <p id="modalTitle" class="modal-title"></p>
+          <p id="modalMessage" class="modal-message"></p>
+        </figcaption>
+      </figure>
+      <button class="modal-nav modal-next" id="nextMemory" type="button" aria-label="Recuerdo siguiente">›</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
