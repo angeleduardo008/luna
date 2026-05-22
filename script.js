@@ -72,7 +72,7 @@ const momentos = [
     mensaje: "Luna, gracias por haber sido parte de días que no quiero olvidar."
   },
   {
-    foto: "fotos/19.jpeg",
+    foto: "fotos/21.jpeg",
     mensaje: "Aquí guardo un deseo simple: que recuerdes lo mucho que vales."
   },
   {
