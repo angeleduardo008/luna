@@ -86,6 +86,7 @@ const savedCounter = document.querySelector("#savedCounter");
 const music = document.querySelector("#bgMusic");
 const musicToggle = document.querySelector("#musicToggle");
 const volumeControl = document.querySelector("#volumeControl");
+const audioNotice = document.querySelector("#audioNotice");
 const startButton = document.querySelector("#startButton");
 const openLetterButton = document.querySelector("#openLetterButton");
 const apologyLetter = document.querySelector("#apologyLetter");
@@ -232,13 +233,49 @@ async function toggleMusic() {
     try {
       await music.play();
       syncMusicButton(true);
+      hideAudioNotice();
     } catch (error) {
       syncMusicButton(false);
+      showAudioNotice();
     }
   } else {
     music.pause();
     syncMusicButton(false);
   }
+}
+
+function showAudioNotice() {
+  audioNotice.hidden = false;
+}
+
+function hideAudioNotice() {
+  audioNotice.hidden = true;
+}
+
+async function tryStartMusic() {
+  try {
+    await music.play();
+    syncMusicButton(true);
+    hideAudioNotice();
+  } catch (error) {
+    syncMusicButton(false);
+    showAudioNotice();
+  }
+}
+
+function setupFirstInteractionAudio() {
+  const activate = () => {
+    if (music.paused) {
+      tryStartMusic();
+    }
+    window.removeEventListener("click", activate);
+    window.removeEventListener("touchstart", activate);
+    window.removeEventListener("keydown", activate);
+  };
+
+  window.addEventListener("click", activate);
+  window.addEventListener("touchstart", activate);
+  window.addEventListener("keydown", activate);
 }
 
 function setupRevealAnimations() {
@@ -258,6 +295,7 @@ music.volume = Number(volumeControl.value);
 modalImage.addEventListener("error", () => markMissingImage(modalImageWrap));
 
 musicToggle.addEventListener("click", toggleMusic);
+audioNotice.addEventListener("click", toggleMusic);
 volumeControl.addEventListener("input", () => {
   music.volume = Number(volumeControl.value);
 });
@@ -302,4 +340,6 @@ document.addEventListener("keydown", (event) => {
 
 renderGallery();
 setupRevealAnimations();
+setupFirstInteractionAudio();
+tryStartMusic();
 updateSavedCounter();

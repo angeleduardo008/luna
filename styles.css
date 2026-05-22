@@ -90,6 +90,26 @@ button {
   width: 96px;
 }
 
+.audio-notice {
+  background: var(--rose);
+  border: 0;
+  border-radius: 999px;
+  bottom: 18px;
+  box-shadow: 0 14px 32px rgba(201, 76, 111, 0.35);
+  color: #fff;
+  font-weight: 800;
+  left: 50%;
+  min-height: 46px;
+  padding: 0 20px;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 45;
+}
+
+.audio-notice[hidden] {
+  display: none;
+}
+
 .hero {
   align-items: center;
   display: grid;
